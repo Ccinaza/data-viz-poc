@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: stg_sales
+    meta:
+      joins: []
+    columns:
+      - name: date
+        description: "Date of the sale"
+        meta:
+          dimension:
+            type: date
+      - name: region
+        description: "Sales region"
+        meta:
+          dimension:
+            type: string
+      - name: category
+        description: "Product category"
+        meta:
+          dimension:
+            type: string
+      - name: quantity
+        description: "Number of items sold"
+        meta:
+          dimension:
+            type: number
+      - name: unit_price
+        description: "Original price per unit"
+        meta:
+          dimension:
+            type: number
+      - name: discount
+        description: "Discount applied"
+        meta:
+          dimension:
+            type: number
+      - name: final_price
+        description: "Price after discount"
+        meta:
+          dimension:
+            type: number
+      - name: total_sale
+        description: "Total sale amount"
+        meta:
+          dimension:
+            type: number
+
+  - name: stg_users
+    meta:
+      joins: []
+    columns:
+      - name: user_id
+        description: "Unique identifier for the user"
+        meta:
+          dimension:
+            type: number
+      - name: username
+        description: "User's username"
+        meta:
+          dimension:
+            type: string
+      - name: department
+        description: "User's department"
+        meta:
+          dimension:
+            type: string
+      - name: access_level
+        description: "User's access level"
+        meta:
+          dimension:
+            type: string
+      - name: join_date
+        description: "Date user joined"
+        meta:
+          dimension:
+            type: date
+
+  - name: stg_regional
+    meta:
+      joins: []
+    columns:
+      - name: region
+        description: "Region name"
+        meta:
+          dimension:
+            type: string
+      - name: metric
+        description: "Performance metric"
+        meta:
+          dimension:
+            type: string
+      - name: month
+        description: "Month number"
+        meta:
+          dimension:
+            type: number
+      - name: value
+        description: "Actual value"
+        meta:
+          dimension:
+            type: number
+      - name: target
+        description: "Target value"
+        meta:
+          dimension:
+            type: number
+      - name: year
+        description: "Year"
+        meta:
+          dimension:
+            type: number

@@ -1,0 +1,15 @@
+poc_project:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5433
+      user: lightdash
+      password: lightdash
+      dbname: warehouse
+      schema: public
+      threads: 4
+      keepalives_idle: 0
+      connect_timeout: 10
+      retries: 1

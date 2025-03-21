@@ -1,0 +1,9 @@
+database:
+  type: postgres
+  host: localhost
+  port: 5433
+  user: lightdash
+  password: lightdash
+  dbname: warehouse
+  schema: public
+  sslmode: disable

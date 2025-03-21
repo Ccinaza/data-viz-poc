@@ -1,0 +1,44 @@
+services:
+  warehouse:
+    image: postgres:13
+    platform: linux/amd64
+    environment:
+      POSTGRES_USER: lightdash
+      POSTGRES_PASSWORD: lightdash
+      POSTGRES_DB: warehouse
+    volumes:
+      - warehouse-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: always
+
+  lightdash-db:
+    image: postgres:13
+    platform: linux/amd64
+    environment:
+      POSTGRES_USER: lightdash
+      POSTGRES_PASSWORD: lightdash
+      POSTGRES_DB: lightdash
+    volumes:
+      - lightdash-db-data:/var/lib/postgresql/data
+    restart: always
+
+  lightdash:
+    image: lightdash/lightdash:latest
+    platform: linux/amd64
+    depends_on:
+      - lightdash-db
+    environment:
+      - PGHOST=lightdash-db
+      - PGPORT=5432
+      - PGUSER=lightdash
+      - PGPASSWORD=lightdash
+      - PGDATABASE=lightdash
+      - LIGHTDASH_SECRET=your-secret-key
+    ports:
+      - "8080:8080"
+    restart: always
+
+volumes:
+  warehouse-data:
+  lightdash-db-data:

@@ -1,0 +1,54 @@
+sources:
+  - name: warehouse
+    database: warehouse  
+    schema: public
+    tables:
+      - name: sales_data
+        description: "Sales transaction data"
+        columns:
+          - name: date
+            description: "Date of the sale"
+          - name: region
+            description: "Sales region"
+          - name: category
+            description: "Product category"
+          - name: quantity
+            description: "Number of items sold"
+          - name: unit_price
+            description: "Original price per unit"
+          - name: discount
+            description: "Discount applied"
+          - name: final_price
+            description: "Price after discount"
+          - name: total_sale
+            description: "Total sale amount"
+
+      - name: user_data
+        description: "User information for testing access controls"
+        columns:
+          - name: user_id
+            description: "Unique identifier for the user"
+          - name: username
+            description: "User's username"
+          - name: department
+            description: "User's department"
+          - name: access_level
+            description: "User's access level"
+          - name: join_date
+            description: "Date user joined"
+
+      - name: regional_data
+        description: "Regional performance metrics"
+        columns:
+          - name: region
+            description: "Region name"
+          - name: metric
+            description: "Performance metric"
+          - name: month
+            description: "Month number"
+          - name: value
+            description: "Actual value"
+          - name: target
+            description: "Target value"
+          - name: year
+            description: "Year"
