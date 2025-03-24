@@ -1,12 +1,12 @@
-version: '3'
 services:
+  # Metabase's internal application database
   metabase-db:
     image: postgres:14
     container_name: metabase-db
     environment:
-      POSTGRES_USER: metabase
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: metabase
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - metabase_data:/var/lib/postgresql/data
     ports:
@@ -14,20 +14,48 @@ services:
     networks:
       - metabase-network
 
+  # Metabase application
   metabase:
     image: metabase/metabase:latest
     container_name: metabase
     depends_on:
       - metabase-db
     environment:
-      MB_DB_TYPE: postgres
-      MB_DB_DBNAME: metabase
-      MB_DB_PORT: 5432
-      MB_DB_USER: metabase
-      MB_DB_PASS: password
-      MB_DB_HOST: metabase-db
+      MB_DB_TYPE: ${MB_DB_TYPE}
+      MB_DB_DBNAME: ${MB_DBNAME}
+      MB_DB_PORT: ${MB_DB_PORT}
+      MB_DB_USER: ${MB_DB_USER}
+      MB_DB_PASS: ${MB_DB_PASS}
+      MB_DB_HOST: ${MB_DB_HOST}
     ports:
       - "3000:3000"
+    volumes:
+      - ./plugins:/plugins
+    networks:
+      - metabase-network
+
+  # ClickHouse data warehouse
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
+    environment:
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
+    ports:
+      - "8123:8123"  # HTTP interface
+      - "9000:9000"  # Native interface
+    volumes:
+      - metabase_clickhouse_data:/var/lib/clickhouse
+    networks:
+      - metabase-network
+
+  # Mail testing service
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"  # SMTP port
+      - "8025:8025"  # Web UI port
     networks:
       - metabase-network
 
@@ -36,3 +64,5 @@ networks:
 
 volumes:
   metabase_data:
+  clickhouse_data:
+  metabase_clickhouse_data:
