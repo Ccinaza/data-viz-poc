@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<clickhouse>
+    <users>
+        <default>
+            <password_sha256_hex>97b9d61001d12232a194cd9c2dabc104ce9cbf2454b49d6cb16399dd1f1766f4</password_sha256_hex>
+            <networks>
+                <ip>::/0</ip>
+            </networks>
+            <profile>default</profile>
+            <quota>default</quota>
+        </default>
+    </users>
+</clickhouse>

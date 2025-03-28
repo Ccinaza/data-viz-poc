@@ -37,13 +37,13 @@ services:
   # ClickHouse data warehouse
   clickhouse:
     image: clickhouse/clickhouse-server:latest
-    container_name: clickhouse
+    container_name: clickhouse-meta
     environment:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
     ports:
-      - "8123:8123"  # HTTP interface
-      - "9000:9000"  # Native interface
+      - "8124:8124"  # HTTP interface
+      - "9001:9001"  # Native interface
     volumes:
       - metabase_clickhouse_data:/var/lib/clickhouse
     networks:
@@ -52,10 +52,10 @@ services:
   # Mail testing service
   mailhog:
     image: mailhog/mailhog
-    container_name: mailhog
+    container_name: mailhog-meta
     ports:
-      - "1025:1025"  # SMTP port
-      - "8025:8025"  # Web UI port
+      - "1026:1026"  # SMTP port
+      - "8026:8026"  # Web UI port
     networks:
       - metabase-network
 
