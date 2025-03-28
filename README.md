@@ -7,13 +7,13 @@ This document evaluates LightDash, Metabase, and Superset as potential data visu
 After thorough testing of Metabase and Superset, Metabase emerges as the most suitable BI tool for our requirements:
 
 **Strengths:**
-✅ Easiest report creation with intuitive UI
-✅ Simple data modeling and access management
-✅ Robust user invitation and management via SMTP
-✅ Straightforward dashboard sharing
-✅ Strong self-service capabilities for non-technical users
-✅ Seamless ClickHouse integration via third-party driver
-✅ Lightweight and quick to deploy
+- Easiest report creation with intuitive UI
+- Simple data modeling and access management
+- Robust user invitation and management via SMTP
+- Straightforward dashboard sharing
+- Strong self-service capabilities for non-technical users
+- Seamless ClickHouse integration via third-party driver
+- Lightweight and quick to deploy
 
 **Comparative Observations:**
 - Superset: More complex, steeper learning curve
